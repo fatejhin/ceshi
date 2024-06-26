@@ -3,22 +3,22 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { mkdirSync } from 'node:fs';
 import { parentPort, threadId } from 'node:worker_threads';
-import { provider, isWindows } from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/std-env@3.7.0/node_modules/std-env/dist/index.mjs';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, fetchWithEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, setResponseStatus, setResponseHeader, send, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, createError, getRouterParam, getQuery as getQuery$1, readBody, getHeader } from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/h3@1.11.1/node_modules/h3/dist/index.mjs';
-import { createFetch as createFetch$1, Headers as Headers$1 } from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/ofetch@1.3.4/node_modules/ofetch/dist/node.mjs';
-import destr from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/destr@2.0.3/node_modules/destr/dist/index.mjs';
-import { createCall, createFetch } from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/unenv@1.9.0/node_modules/unenv/runtime/fetch/index.mjs';
-import { createHooks } from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs';
-import { klona } from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/klona@2.0.6/node_modules/klona/dist/index.mjs';
-import { snakeCase } from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/scule@1.3.0/node_modules/scule/dist/index.mjs';
-import defu, { defuFn } from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/defu@6.1.4/node_modules/defu/dist/defu.mjs';
-import { hash } from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/ohash@1.1.3/node_modules/ohash/dist/index.mjs';
-import { parseURL, withoutBase, joinURL, getQuery, withQuery } from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/ufo@1.5.3/node_modules/ufo/dist/index.mjs';
-import { createStorage, prefixStorage } from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/unstorage@1.10.2_ioredis@5.4.1/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/unstorage@1.10.2_ioredis@5.4.1/node_modules/unstorage/drivers/fs.mjs';
-import { toRouteMatcher, createRouter } from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/radix3@1.1.2/node_modules/radix3/dist/index.mjs';
-import dayjs from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/dayjs@1.11.11/node_modules/dayjs/dayjs.min.js';
-import { cloneDeep } from 'file://D:/Front-end/fzy-login/node_modules/.pnpm/lodash-es@4.17.21/node_modules/lodash-es/lodash.js';
+import { provider, isWindows } from 'file://D:/Front-end/sso-vue/node_modules/std-env/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, fetchWithEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, setResponseStatus, setResponseHeader, send, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, createError, getRouterParam, getQuery as getQuery$1, readBody, getHeader } from 'file://D:/Front-end/sso-vue/node_modules/h3/dist/index.mjs';
+import { createFetch as createFetch$1, Headers as Headers$1 } from 'file://D:/Front-end/sso-vue/node_modules/ofetch/dist/node.mjs';
+import destr from 'file://D:/Front-end/sso-vue/node_modules/destr/dist/index.mjs';
+import { createCall, createFetch } from 'file://D:/Front-end/sso-vue/node_modules/unenv/runtime/fetch/index.mjs';
+import { createHooks } from 'file://D:/Front-end/sso-vue/node_modules/hookable/dist/index.mjs';
+import { klona } from 'file://D:/Front-end/sso-vue/node_modules/klona/dist/index.mjs';
+import { snakeCase } from 'file://D:/Front-end/sso-vue/node_modules/scule/dist/index.mjs';
+import defu, { defuFn } from 'file://D:/Front-end/sso-vue/node_modules/defu/dist/defu.mjs';
+import { hash } from 'file://D:/Front-end/sso-vue/node_modules/ohash/dist/index.mjs';
+import { parseURL, withoutBase, joinURL, getQuery, withQuery } from 'file://D:/Front-end/sso-vue/node_modules/ufo/dist/index.mjs';
+import { createStorage, prefixStorage } from 'file://D:/Front-end/sso-vue/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file://D:/Front-end/sso-vue/node_modules/unstorage/drivers/fs.mjs';
+import { toRouteMatcher, createRouter } from 'file://D:/Front-end/sso-vue/node_modules/radix3/dist/index.mjs';
+import dayjs from 'file://D:/Front-end/sso-vue/node_modules/dayjs/dayjs.min.js';
+import { cloneDeep } from 'file://D:/Front-end/sso-vue/node_modules/lodash-es/lodash.js';
 
 function getEnv(key, opts) {
   const envKey = snakeCase(key).toUpperCase();
@@ -109,7 +109,7 @@ new Proxy(/* @__PURE__ */ Object.create(null), {
   }
 });
 
-const serverAssets = [{"baseName":"server","dir":"D:/Front-end/fzy-login/servers/assets"}];
+const serverAssets = [{"baseName":"server","dir":"D:/Front-end/sso-vue/servers/assets"}];
 
 const assets = createStorage();
 
@@ -121,11 +121,11 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets);
 
-storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"D:\\Front-end\\fzy-login","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"D:\\Front-end\\fzy-login\\servers","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"D:\\Front-end\\fzy-login\\servers\\.nitro","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"D:\\Front-end\\fzy-login\\servers\\.nitro\\cache","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"D:\\Front-end\\fzy-login\\.data\\kv","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"D:\\Front-end\\sso-vue","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"D:\\Front-end\\sso-vue\\servers","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"D:\\Front-end\\sso-vue\\servers\\.nitro","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"D:\\Front-end\\sso-vue\\servers\\.nitro\\cache","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"D:\\Front-end\\sso-vue\\.data\\kv","ignore":["**/node_modules/**","**/.git/**"]}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -634,44 +634,44 @@ function renderHTMLError(error) {
 `;
 }
 
-const _lazy_3CJ4zG = () => Promise.resolve().then(function () { return _401$1; });
-const _lazy_BRCXpQ = () => Promise.resolve().then(function () { return _403$1; });
-const _lazy_pDd67q = () => Promise.resolve().then(function () { return _500$1; });
-const _lazy_mAemf8 = () => Promise.resolve().then(function () { return index$3; });
-const _lazy_AJBPhu = () => Promise.resolve().then(function () { return _id__delete$1; });
-const _lazy_XvKJQy = () => Promise.resolve().then(function () { return basicList_post$1; });
-const _lazy_rfInXM = () => Promise.resolve().then(function () { return consultList_post$1; });
-const _lazy_FvjoHd = () => Promise.resolve().then(function () { return create_post$1; });
-const _lazy_4pn4sz = () => Promise.resolve().then(function () { return crudTable_post$1; });
-const _lazy_DRglc4 = () => Promise.resolve().then(function () { return index_post$1; });
-const _lazy_5q3RAy = () => Promise.resolve().then(function () { return index_put$1; });
-const _lazy_fX6Jn9 = () => Promise.resolve().then(function () { return login_post$1; });
-const _lazy_UVyICT = () => Promise.resolve().then(function () { return logout$1; });
-const _lazy_ld6dYT = () => Promise.resolve().then(function () { return index$1; });
-const _lazy_tOod2z = () => Promise.resolve().then(function () { return test_delete$1; });
-const _lazy_MnL90Y = () => Promise.resolve().then(function () { return test_post$1; });
-const _lazy_PnSGv1 = () => Promise.resolve().then(function () { return test_put$1; });
-const _lazy_wmsrUk = () => Promise.resolve().then(function () { return info$1; });
+const _lazy_2BKPQZ = () => Promise.resolve().then(function () { return _401$1; });
+const _lazy_9SvoDR = () => Promise.resolve().then(function () { return _403$1; });
+const _lazy_5HvA7y = () => Promise.resolve().then(function () { return _500$1; });
+const _lazy_YC1pQD = () => Promise.resolve().then(function () { return index$3; });
+const _lazy_Pq77Eb = () => Promise.resolve().then(function () { return _id__delete$1; });
+const _lazy_pN1fwu = () => Promise.resolve().then(function () { return basicList_post$1; });
+const _lazy_xmxG6g = () => Promise.resolve().then(function () { return consultList_post$1; });
+const _lazy_U5xGwi = () => Promise.resolve().then(function () { return create_post$1; });
+const _lazy_Pg1JLn = () => Promise.resolve().then(function () { return crudTable_post$1; });
+const _lazy_v4cubc = () => Promise.resolve().then(function () { return index_post$1; });
+const _lazy_BnBgVs = () => Promise.resolve().then(function () { return index_put$1; });
+const _lazy_qZHSdL = () => Promise.resolve().then(function () { return login_post$1; });
+const _lazy_PQppxb = () => Promise.resolve().then(function () { return logout$1; });
+const _lazy_VTaSqQ = () => Promise.resolve().then(function () { return index$1; });
+const _lazy_RvPWDn = () => Promise.resolve().then(function () { return test_delete$1; });
+const _lazy_gXJXWR = () => Promise.resolve().then(function () { return test_post$1; });
+const _lazy_pjTaoW = () => Promise.resolve().then(function () { return test_put$1; });
+const _lazy_xnuXbA = () => Promise.resolve().then(function () { return info$1; });
 
 const handlers = [
-  { route: '/401', handler: _lazy_3CJ4zG, lazy: true, middleware: false, method: undefined },
-  { route: '/403', handler: _lazy_BRCXpQ, lazy: true, middleware: false, method: undefined },
-  { route: '/500', handler: _lazy_pDd67q, lazy: true, middleware: false, method: undefined },
-  { route: '/', handler: _lazy_mAemf8, lazy: true, middleware: false, method: undefined },
-  { route: '/list/:id', handler: _lazy_AJBPhu, lazy: true, middleware: false, method: "delete" },
-  { route: '/list/basic-list', handler: _lazy_XvKJQy, lazy: true, middleware: false, method: "post" },
-  { route: '/list/consult-list', handler: _lazy_rfInXM, lazy: true, middleware: false, method: "post" },
-  { route: '/list/create', handler: _lazy_FvjoHd, lazy: true, middleware: false, method: "post" },
-  { route: '/list/crud-table', handler: _lazy_4pn4sz, lazy: true, middleware: false, method: "post" },
-  { route: '/list', handler: _lazy_DRglc4, lazy: true, middleware: false, method: "post" },
-  { route: '/list', handler: _lazy_5q3RAy, lazy: true, middleware: false, method: "put" },
-  { route: '/login', handler: _lazy_fX6Jn9, lazy: true, middleware: false, method: "post" },
-  { route: '/logout', handler: _lazy_UVyICT, lazy: true, middleware: false, method: undefined },
-  { route: '/menu', handler: _lazy_ld6dYT, lazy: true, middleware: false, method: undefined },
-  { route: '/test', handler: _lazy_tOod2z, lazy: true, middleware: false, method: "delete" },
-  { route: '/test', handler: _lazy_MnL90Y, lazy: true, middleware: false, method: "post" },
-  { route: '/test', handler: _lazy_PnSGv1, lazy: true, middleware: false, method: "put" },
-  { route: '/user/info', handler: _lazy_wmsrUk, lazy: true, middleware: false, method: undefined }
+  { route: '/401', handler: _lazy_2BKPQZ, lazy: true, middleware: false, method: undefined },
+  { route: '/403', handler: _lazy_9SvoDR, lazy: true, middleware: false, method: undefined },
+  { route: '/500', handler: _lazy_5HvA7y, lazy: true, middleware: false, method: undefined },
+  { route: '/', handler: _lazy_YC1pQD, lazy: true, middleware: false, method: undefined },
+  { route: '/list/:id', handler: _lazy_Pq77Eb, lazy: true, middleware: false, method: "delete" },
+  { route: '/list/basic-list', handler: _lazy_pN1fwu, lazy: true, middleware: false, method: "post" },
+  { route: '/list/consult-list', handler: _lazy_xmxG6g, lazy: true, middleware: false, method: "post" },
+  { route: '/list/create', handler: _lazy_U5xGwi, lazy: true, middleware: false, method: "post" },
+  { route: '/list/crud-table', handler: _lazy_Pg1JLn, lazy: true, middleware: false, method: "post" },
+  { route: '/list', handler: _lazy_v4cubc, lazy: true, middleware: false, method: "post" },
+  { route: '/list', handler: _lazy_BnBgVs, lazy: true, middleware: false, method: "put" },
+  { route: '/login', handler: _lazy_qZHSdL, lazy: true, middleware: false, method: "post" },
+  { route: '/logout', handler: _lazy_PQppxb, lazy: true, middleware: false, method: undefined },
+  { route: '/menu', handler: _lazy_VTaSqQ, lazy: true, middleware: false, method: undefined },
+  { route: '/test', handler: _lazy_RvPWDn, lazy: true, middleware: false, method: "delete" },
+  { route: '/test', handler: _lazy_gXJXWR, lazy: true, middleware: false, method: "post" },
+  { route: '/test', handler: _lazy_pjTaoW, lazy: true, middleware: false, method: "put" },
+  { route: '/user/info', handler: _lazy_xnuXbA, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {

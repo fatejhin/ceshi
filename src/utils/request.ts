@@ -17,13 +17,15 @@ export interface RequestConfigExtra {
   loading?: boolean
 }
 const instance: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_APP_BASE_API ?? '/',
+  baseURL: import.meta.env.VITE_APP_BASE_API_DEV ?? '/',
   timeout: 60000,
   headers: { 'Content-Type': ContentTypeEnum.JSON },
 })
 const axiosLoading = new AxiosLoading()
 async function requestHandler(config: InternalAxiosRequestConfig & RequestConfigExtra): Promise<InternalAxiosRequestConfig> {
   // 处理请求前的url
+  console.log(config)
+
   if (
     import.meta.env.DEV
       && import.meta.env.VITE_APP_BASE_API_DEV

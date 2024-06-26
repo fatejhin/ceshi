@@ -10,6 +10,8 @@ import { OUTPUT_DIR } from './plugins/constants'
 const baseSrc = fileURLToPath(new URL('./src', import.meta.url))
 // https://vitejs.dev/config/
 export default ({ mode }: ConfigEnv): UserConfig => {
+  console.log(mode)
+
   const env = loadEnv(mode, process.cwd())
 
   const proxyObj = {}
@@ -20,7 +22,6 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       rewrite: path => path.replace(new RegExp(`^${env.VITE_APP_BASE_API_DEV}`), ''),
     }
   }
-  console.log(proxyObj)
 
   return {
     plugins: createVitePlugins(env),

@@ -2,17 +2,10 @@
 import { LockOutlined, MobileOutlined, UserOutlined } from '@ant-design/icons-vue'
 import { delayTimer } from '@v-c/utils'
 import { AxiosError } from 'axios'
-import { ceshiapi, loginApi } from '~/api/common/login'
+import { loginApi } from '~/api/common/login'
 import { getQueryParam } from '~/utils/tools'
 import type { LoginMobileParams, LoginParams } from '~@/api/common/login'
 import pageBubble from '@/utils/page-bubble'
-
-onMounted(() => ceshi())
-
-async function ceshi() {
-  const res = await ceshiapi()
-  console.log(res)
-}
 
 const message = useMessage()
 const notification = useNotification()
@@ -81,6 +74,9 @@ async function submit() {
       } as unknown as LoginMobileParams
     }
     const { data } = await loginApi(params)
+    submitLoading.value = false
+    location.replace(data)
+    return
     token.value = data?.token
     notification.success({
       message: '登录成功',

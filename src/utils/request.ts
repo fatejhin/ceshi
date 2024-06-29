@@ -24,8 +24,6 @@ const instance: AxiosInstance = axios.create({
 const axiosLoading = new AxiosLoading()
 async function requestHandler(config: InternalAxiosRequestConfig & RequestConfigExtra): Promise<InternalAxiosRequestConfig> {
   // 处理请求前的url
-  console.log(config)
-
   if (
     import.meta.env.DEV
       && import.meta.env.VITE_APP_BASE_API_DEV

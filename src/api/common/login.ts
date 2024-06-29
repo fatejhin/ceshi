@@ -15,7 +15,7 @@ export interface LoginResultModel {
 }
 
 export function loginApi(params: LoginParams | LoginMobileParams) {
-  return usePost<LoginResultModel, LoginParams | LoginMobileParams>('/login', params, {
+  return usePost('/login1', params, {
     // 设置为false的时候不会携带token
     token: false,
     // 开发模式下使用自定义的接口
@@ -27,8 +27,4 @@ export function loginApi(params: LoginParams | LoginMobileParams) {
 
 export function logoutApi() {
   return useGet('/logout')
-}
-
-export function ceshiapi() {
-  return useGet('/test/aaa')
 }

@@ -1,9 +1,9 @@
 {
-  "name": "antdv-pro",
+  "name": "fzy-sso",
   "type": "module",
   "version": "1.2.0",
   "packageManager": "pnpm@9.1.1",
-  "author": "aibayanyu <aibayanyu@qq.com>",
+  "author": "fzy-Team",
   "repository": "antdv-pro/antdv-pro",
   "engines": {
     "node": ">=18.15.0"

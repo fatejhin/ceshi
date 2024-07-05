@@ -22,6 +22,8 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       rewrite: path => path.replace(new RegExp(`^${env.VITE_APP_BASE_API_DEV}`), ''),
     }
   }
+  console.log(proxyObj)
+  console.log(env.VITE_APP_BASE_API_DEVAPI)
 
   return {
     plugins: createVitePlugins(env),
@@ -105,6 +107,11 @@ export default ({ mode }: ConfigEnv): UserConfig => {
         //   changeOrigin: true,
         //   rewrite: path => path.replace(new RegExp(`^${env.VITE_APP_BASE_API}`), ''),
         // },
+        '/sso': {
+          target: 'http://192.168.21.49:9000',
+          changeOrigin: true,
+          rewrite: path => path.replace(new RegExp(`^${env.VITE_APP_BASE_API_SSO}`), ''),
+        },
       },
     },
     test: {

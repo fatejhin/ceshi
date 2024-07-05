@@ -2,12 +2,12 @@
 import { LockOutlined, MobileOutlined, UserOutlined } from '@ant-design/icons-vue'
 import { delayTimer } from '@v-c/utils'
 import { AxiosError } from 'axios'
-import { loginApi } from '~/api/common/login'
+import { ssoLogin } from '~/api/common/login'
 import { getQueryParam } from '~/utils/tools'
-import type { LoginMobileParams, LoginParams } from '~@/api/common/login'
+import type { LoginMobileParams, LoginParams, ssoLoginParams } from '~@/api/common/login'
 import pageBubble from '@/utils/page-bubble'
 
-const message = useMessage()
+// const message = useMessage()
 const notification = useNotification()
 const appStore = useAppStore()
 const { layoutSetting } = storeToRefs(appStore)
@@ -23,61 +23,58 @@ const loginModel = reactive({
 })
 const { t } = useI18nLocale()
 const formRef = shallowRef()
-const codeLoading = shallowRef(false)
-const resetCounter = 60
+// const codeLoading = shallowRef(false)
+// const resetCounter = 60
 const submitLoading = shallowRef(false)
 const errorAlert = shallowRef(false)
 const bubbleCanvas = ref<HTMLCanvasElement>()
-const { counter, pause, reset, resume, isActive } = useInterval(1000, {
-  controls: true,
-  immediate: false,
-  callback(count) {
-    if (count) {
-      if (count === resetCounter)
-        pause()
-    }
-  },
-})
-async function getCode() {
-  codeLoading.value = true
-  try {
-    await formRef.value.validate(['mobile'])
-    setTimeout(() => {
-      reset()
-      resume()
-      codeLoading.value = false
-      message.success('验证码是：123456')
-    }, 3000)
-  }
-  catch (error) {
-    codeLoading.value = false
-  }
-}
+// const { counter, pause, reset, resume, isActive } = useInterval(1000, {
+//   controls: true,
+//   immediate: false,
+//   callback(count) {
+//     if (count) {
+//       if (count === resetCounter)
+//         pause()
+//     }
+//   },
+// })
+// async function getCode() {
+//   codeLoading.value = true
+//   try {
+//     await formRef.value.validate(['mobile'])
+//     setTimeout(() => {
+//       reset()
+//       resume()
+//       codeLoading.value = false
+//       message.success('验证码是：123456')
+//     }, 3000)
+//   }
+//   catch (error) {
+//     codeLoading.value = false
+//   }
+// }
 
 async function submit() {
   submitLoading.value = true
   try {
     await formRef.value?.validate()
-    let params: LoginParams | LoginMobileParams
-
-    if (loginModel.type === 'account') {
-      params = {
-        username: loginModel.username,
-        password: loginModel.password,
-      } as unknown as LoginParams
-    }
-    else {
-      params = {
-        mobile: loginModel.mobile,
-        code: loginModel.code,
-        type: 'mobile',
-      } as unknown as LoginMobileParams
-    }
-    const { data } = await loginApi(params)
+    const params: ssoLoginParams = {
+      username: loginModel.username,
+      password: loginModel.password,
+    } as unknown as ssoLoginParams
+    // if (loginModel.type === 'account') {
+    // }
+    // else {
+    //   params = {
+    //     mobile: loginModel.mobile,
+    //     code: loginModel.code,
+    //     type: 'mobile',
+    //   } as unknown as LoginMobileParams
+    // }
+    const res = await ssoLogin(params)
+    console.log(res)
     submitLoading.value = false
-    location.replace(data)
-    return
-    token.value = data?.token
+    token.value = 'YWRtaW4='
     notification.success({
       message: '登录成功',
       description: '欢迎回来！',
@@ -85,6 +82,8 @@ async function submit() {
     })
     // 获取当前是否存在重定向的链接，如果存在就走重定向的地址
     const redirect = getQueryParam('redirect', '/')
+    console.log(redirect)
+
     router.push({
       path: redirect,
       replace: true,
@@ -93,15 +92,13 @@ async function submit() {
   catch (e) {
     if (e instanceof AxiosError)
       errorAlert.value = true
-
     submitLoading.value = false
   }
 }
 onMounted(async () => {
-  await delayTimer(300)
+  await delayTimer(500)
   pageBubble.init(unref(bubbleCanvas)!)
 })
-
 onBeforeUnmount(() => {
   pageBubble.removeListeners()
 })
@@ -155,19 +152,19 @@ onBeforeUnmount(() => {
               {{ t('pages.login.tips') }}
             </div>
             <a-form ref="formRef" :model="loginModel">
-              <a-tabs v-model:activeKey="loginModel.type" centered>
+              <!-- <a-tabs v-model:activeKey="loginModel.type" centered>
                 <a-tab-pane key="account" :tab="t('pages.login.accountLogin.tab')" />
                 <a-tab-pane key="mobile" :tab="t('pages.login.phoneLogin.tab')" />
-              </a-tabs>
+              </a-tabs> -->
               <!-- 判断是否存在error -->
               <a-alert
                 v-if="errorAlert && loginModel.type === 'account'" mb-24px
                 :message="t('pages.login.accountLogin.errorMessage')" type="error" show-icon
               />
-              <a-alert
+              <!-- <a-alert
                 v-if="errorAlert && loginModel.type === 'mobile'" mb-24px
                 :message="t('pages.login.phoneLogin.errorMessage')" type="error" show-icon
-              />
+              /> -->
               <template v-if="loginModel.type === 'account'">
                 <a-form-item name="username" :rules="[{ required: true, message: t('pages.login.username.required') }]">
                   <a-input
@@ -191,7 +188,7 @@ onBeforeUnmount(() => {
                   </a-input-password>
                 </a-form-item>
               </template>
-              <template v-if="loginModel.type === 'mobile'">
+              <!-- <template v-if="loginModel.type === 'mobile'">
                 <a-form-item
                   name="mobile" :rules="[
                     { required: true, message: t('pages.login.phoneNumber.required') },
@@ -231,7 +228,7 @@ onBeforeUnmount(() => {
                     </a-button>
                   </div>
                 </a-form-item>
-              </template>
+              </template> -->
               <div class="mb-24px flex-between">
                 <a-checkbox v-model:checked="loginModel.remember">
                   {{ t('pages.login.rememberMe') }}
